@@ -15,6 +15,7 @@ namespace HostsEdit
     public partial class Form1 : Form
     {
         private readonly string HOSTSfilepath = string.Format("{0}\\drivers\\etc\\hosts", Environment.GetFolderPath(Environment.SpecialFolder.System));
+        private readonly Color invalidRowColor = Color.FromArgb(255, 199, 206);
 
         public Form1()
         {
@@ -71,6 +72,10 @@ namespace HostsEdit
 
             if (!(g.StartsWith("127.0.0.1") || g.StartsWith("0.0.0.0")))
                 dg.Rows[e.RowIndex].Cells[0].Value = "127.0.0.1 " + g;
+            else
+                dg.Rows[e.RowIndex].Cells[0].Value = g;
+
+            Signalize9entries();
         }
 
         private void btnSave_Click(object sender, EventArgs e)
@@ -104,13 +109,17 @@ namespace HostsEdit
 
             dg.Focus();
         }
-        
+
         private void dg_MouseClick(object sender, MouseEventArgs e)
         {
             if (e.Button == System.Windows.Forms.MouseButtons.Right)
             {
                 if (dg.SelectedCells.Count > 0)
+                {
+                    toolStripDividePer9.Visible = (dg.SelectedCells.Count == 1 && dg.SelectedCells[0].Style.BackColor == invalidRowColor);
+
                     ctxGrid.Show(System.Windows.Forms.Cursor.Position);
+                }
             }
         }
 
@@ -165,17 +174,18 @@ namespace HostsEdit
             var selectDG = dg.Rows.OfType<DataGridViewRow>().Where(x => x.Cells[0].Value != null && x.Cells[0].Selected &&
                                                                 x.Cells[0].Value.ToString().IndexOf(" ") > 0 &&
                                                                 !x.Cells[0].Value.ToString().StartsWith("#")
-                                                            ) ;
+                                                            );
 
             var r = selectDG
                     .Select(s => s.Cells[0].Value.ToString().Split(' '))
-                    .Select(x => {
-                                    //if (x.Length == 2)
-                                    //    return x[1];
-                                    //else
-                                        return string.Join(" ", x.Skip(1));
+                    .Select(x =>
+                    {
+                        //if (x.Length == 2)
+                        //    return x[1];
+                        //else
+                        return string.Join(" ", x.Skip(1));
 
-                                    }).ToList();
+                    }).ToList();
 
             if (r.Count < 2)
             {
@@ -193,6 +203,8 @@ namespace HostsEdit
             //modify first
             var t = selectDG.First();
             t.Cells[0].Value = k;
+
+            Signalize9entries();
         }
 
         private void toolStripDivide_Click(object sender, EventArgs e)
@@ -200,8 +212,8 @@ namespace HostsEdit
             var selectDG = dg.Rows.OfType<DataGridViewRow>().Where(x => x.Cells[0].Value != null && x.Cells[0].Selected &&
                                                     x.Cells[0].Value.ToString().Split(' ').Length > 2 &&
                                                     !x.Cells[0].Value.ToString().StartsWith("#")
-                                                ).Select(s => new { Value = s.Cells[0].Value.ToString(), RowIndex = s.Index } 
-                                                
+                                                ).Select(s => new { Value = s.Cells[0].Value.ToString(), RowIndex = s.Index }
+
                                                             ).ToList();
 
             if (selectDG.Count != 1)
@@ -216,13 +228,33 @@ namespace HostsEdit
 
                 foreach (string item in f.Skip(2).Reverse())
                 {
-                    dg.Rows.Insert(match.RowIndex+1, string.Format("127.0.0.1 {0}",item));
+                    dg.Rows.Insert(match.RowIndex + 1, string.Format("127.0.0.1 {0}", item));
                 }
 
                 dg.Rows[match.RowIndex].Cells[0].Value = string.Join(" ", f.Take(2));
-            }
-            //
 
+                if (dg.Rows[match.RowIndex].Cells[0].Tag != null)
+                    dg.Rows[match.RowIndex].Cells[0].Style.BackColor = (Color)dg.Rows[match.RowIndex].Cells[0].Tag;
+            }
+        }
+
+
+        private void toolStripDividePer9_Click(object sender, EventArgs e)
+        {
+            var d = dg.SelectedCells[0].Value.ToString().Split(' ').Skip(1).ToList().SplitPer(9);
+
+            int selectedRow = dg.SelectedCells[0].RowIndex;
+
+
+            dg.Rows[selectedRow].Cells[0].Value = string.Format("127.0.0.1 {0}", string.Join(" ", d.First()));
+            dg.Rows[selectedRow].Cells[0].Style.BackColor = (Color)dg.Rows[selectedRow].Cells[0].Tag;
+
+            foreach (var item in d.Skip(1).Reverse())
+            {
+                dg.Rows.Insert(selectedRow + 1, string.Format("127.0.0.1 {0}", string.Join(" ", item)));
+            }
+
+            Console.WriteLine(d);
         }
 
         private void btnHosts_Click(object sender, EventArgs e)
@@ -231,5 +263,34 @@ namespace HostsEdit
 
         }
 
+        private void Signalize9entries()
+        {
+            dg.Rows.OfType<DataGridViewRow>().ToList().ForEach(row =>
+                {
+                    if (row.Cells[0].Value != null && !row.Cells[0].Value.ToString().StartsWith("#") && row.Cells[0].Value.ToString().Split(' ').Length > 10)
+                    {
+                        row.Cells[0].Tag = row.Cells[0].Style.BackColor;
+                        row.Cells[0].Style.BackColor = invalidRowColor;
+                    }
+                }
+            );
+        }
+    }
+
+    public static class StringExtensions
+    {
+        public static List<List<T>> SplitPer<T>(this List<T> collection, int size)
+        {   // https://codereview.stackexchange.com/a/90198 + https://codereview.stackexchange.com/a/90531
+            var chunks = new List<List<T>>();
+            var chunkCount = collection.Count() / size;
+
+            if (collection.Count % size > 0)
+                chunkCount++;
+
+            for (var i = 0; i < chunkCount; i++)
+                chunks.Add(collection.Skip(i * size).Take(size).ToList());
+
+            return chunks;
+        }
     }
 }

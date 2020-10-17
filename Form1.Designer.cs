@@ -43,6 +43,7 @@
             this.toolStripDelete = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripConsolidate = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripDivide = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripDividePer9 = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dg)).BeginInit();
             this.ctxGrid.SuspendLayout();
@@ -117,9 +118,10 @@
             this.toolStripCopy,
             this.toolStripDelete,
             this.toolStripConsolidate,
-            this.toolStripDivide});
+            this.toolStripDivide,
+            this.toolStripDividePer9});
             this.ctxGrid.Name = "ctxGrid";
-            this.ctxGrid.Size = new System.Drawing.Size(182, 92);
+            this.ctxGrid.Size = new System.Drawing.Size(182, 114);
             // 
             // btnHosts
             // 
@@ -192,6 +194,14 @@
             this.toolStripDivide.Text = "divide selected";
             this.toolStripDivide.Click += new System.EventHandler(this.toolStripDivide_Click);
             // 
+            // toolStripDividePer9
+            // 
+            this.toolStripDividePer9.Image = global::HostsEdit.Properties.Resources.divide9per16;
+            this.toolStripDividePer9.Name = "toolStripDividePer9";
+            this.toolStripDividePer9.Size = new System.Drawing.Size(181, 22);
+            this.toolStripDividePer9.Text = "divide per 9 hosts";
+            this.toolStripDividePer9.Click += new System.EventHandler(this.toolStripDividePer9_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -226,6 +236,7 @@
         private System.Windows.Forms.ToolStripMenuItem toolStripConsolidate;
         private System.Windows.Forms.ToolStripMenuItem toolStripDivide;
         private System.Windows.Forms.Button btnHosts;
+        private System.Windows.Forms.ToolStripMenuItem toolStripDividePer9;
     }
 }
 
