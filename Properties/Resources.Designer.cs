@@ -103,6 +103,16 @@ namespace HostsEdit.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap divide9per16 {
+            get {
+                object obj = ResourceManager.GetObject("divide9per16", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap hosts32 {
             get {
                 object obj = ResourceManager.GetObject("hosts32", resourceCulture);
