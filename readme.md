@@ -42,6 +42,9 @@ the 5th option appears when a row has red background (this means that exceed the
 by the MS limitation, the `h10 h11` doing nothing. has to go to new line, there is the 5th option comes, splits the selected row per 9 hosts.
 
 
+![demo](https://user-images.githubusercontent.com/3852762/96336075-c7941e80-1085-11eb-93aa-daf69de3ff2e.gif)
+
+
 known issue, the application doesnt respect remarks **after** the host(s)
 
 if you have troubles, run it as administrator.
