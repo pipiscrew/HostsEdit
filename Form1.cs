@@ -107,6 +107,8 @@ namespace HostsEdit
             foreach (string item in k)
                 dg.Rows.Add(item);
 
+            Signalize9entries();
+
             dg.Focus();
         }
 
@@ -234,7 +236,10 @@ namespace HostsEdit
                 dg.Rows[match.RowIndex].Cells[0].Value = string.Join(" ", f.Take(2));
 
                 if (dg.Rows[match.RowIndex].Cells[0].Tag != null)
+                {
                     dg.Rows[match.RowIndex].Cells[0].Style.BackColor = (Color)dg.Rows[match.RowIndex].Cells[0].Tag;
+                    dg.Rows[match.RowIndex].Cells[0].Tag = null;
+                }
             }
         }
 
@@ -248,6 +253,7 @@ namespace HostsEdit
 
             dg.Rows[selectedRow].Cells[0].Value = string.Format("127.0.0.1 {0}", string.Join(" ", d.First()));
             dg.Rows[selectedRow].Cells[0].Style.BackColor = (Color)dg.Rows[selectedRow].Cells[0].Tag;
+            dg.Rows[selectedRow].Cells[0].Tag = null;
 
             foreach (var item in d.Skip(1).Reverse())
             {
