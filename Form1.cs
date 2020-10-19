@@ -75,6 +75,12 @@ namespace HostsEdit
             else
                 dg.Rows[e.RowIndex].Cells[0].Value = g;
 
+            if (dg.Rows[e.RowIndex].Cells[0].Style.BackColor == invalidRowColor && dg.Rows[e.RowIndex].Cells[0].Value.ToString().Split(' ').Length <= 10 && dg.Rows[e.RowIndex].Cells[0].Tag != null)
+            {   //when is red and user fix to <= 9
+                dg.Rows[e.RowIndex].Cells[0].Style.BackColor = (Color)dg.Rows[e.RowIndex].Cells[0].Tag;
+                dg.Rows[e.RowIndex].Cells[0].Tag = null;
+            }
+
             Signalize9entries();
         }
 
@@ -259,8 +265,6 @@ namespace HostsEdit
             {
                 dg.Rows.Insert(selectedRow + 1, string.Format("127.0.0.1 {0}", string.Join(" ", item)));
             }
-
-            Console.WriteLine(d);
         }
 
         private void btnHosts_Click(object sender, EventArgs e)
