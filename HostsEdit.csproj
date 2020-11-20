@@ -102,6 +102,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="main.ico" />
+    <None Include="Resources\flushDNS24.png" />
     <None Include="Resources\divide9per16.png" />
     <None Include="Resources\hosts32.png" />
   </ItemGroup>

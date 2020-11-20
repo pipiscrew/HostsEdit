@@ -127,6 +127,9 @@
   <data name="refresh24" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\refresh24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="divide9per16" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\divide9per16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="save24" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\save24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -139,7 +142,7 @@
   <data name="hosts32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\hosts32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="divide9per16" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\divide9per16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="flushDNS24" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\flushDNS24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

@@ -285,6 +285,15 @@ namespace HostsEdit
                 }
             );
         }
+
+        private void btnFlushDNS_Click(object sender, EventArgs e)
+        {
+           string filepath = string.Format("{0}\\ipconfig.exe",Environment.SystemDirectory);
+           if (File.Exists(filepath))
+               Process.Start(filepath, "/flushdns");
+           else
+               MessageBox.Show(filepath + " not found");
+        }
     }
 
     public static class StringExtensions
