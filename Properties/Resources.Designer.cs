@@ -63,6 +63,16 @@ namespace HostsEdit.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap add24 {
+            get {
+                object obj = ResourceManager.GetObject("add24", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap consolidate16 {
             get {
                 object obj = ResourceManager.GetObject("consolidate16", resourceCulture);
@@ -106,6 +116,16 @@ namespace HostsEdit.Properties {
         internal static System.Drawing.Bitmap divide9per16 {
             get {
                 object obj = ResourceManager.GetObject("divide9per16", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap flushDNS24 {
+            get {
+                object obj = ResourceManager.GetObject("flushDNS24", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

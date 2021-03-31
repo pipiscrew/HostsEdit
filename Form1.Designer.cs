@@ -31,14 +31,16 @@
             this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnAdd = new System.Windows.Forms.Button();
+            this.btnFlushDNS = new System.Windows.Forms.Button();
+            this.btnHosts = new System.Windows.Forms.Button();
+            this.brnRefresh = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.txtSearch = new System.Windows.Forms.TextBox();
+            this.btnSave = new System.Windows.Forms.Button();
             this.dg = new System.Windows.Forms.DataGridView();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ctxGrid = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.btnHosts = new System.Windows.Forms.Button();
-            this.brnRefresh = new System.Windows.Forms.Button();
-            this.btnSave = new System.Windows.Forms.Button();
             this.toolStripCopy = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripDelete = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripConsolidate = new System.Windows.Forms.ToolStripMenuItem();
@@ -51,6 +53,8 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.btnAdd);
+            this.panel1.Controls.Add(this.btnFlushDNS);
             this.panel1.Controls.Add(this.btnHosts);
             this.panel1.Controls.Add(this.brnRefresh);
             this.panel1.Controls.Add(this.label1);
@@ -61,6 +65,58 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(816, 39);
             this.panel1.TabIndex = 0;
+            // 
+            // btnAdd
+            // 
+            this.btnAdd.Image = global::HostsEdit.Properties.Resources.add24;
+            this.btnAdd.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnAdd.Location = new System.Drawing.Point(3, 2);
+            this.btnAdd.Name = "btnAdd";
+            this.btnAdd.Size = new System.Drawing.Size(74, 36);
+            this.btnAdd.TabIndex = 5;
+            this.btnAdd.Text = " add";
+            this.btnAdd.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnAdd.UseVisualStyleBackColor = true;
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
+            // 
+            // btnFlushDNS
+            // 
+            this.btnFlushDNS.Image = global::HostsEdit.Properties.Resources.flushDNS24;
+            this.btnFlushDNS.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnFlushDNS.Location = new System.Drawing.Point(373, 2);
+            this.btnFlushDNS.Name = "btnFlushDNS";
+            this.btnFlushDNS.Size = new System.Drawing.Size(110, 36);
+            this.btnFlushDNS.TabIndex = 4;
+            this.btnFlushDNS.Text = " flush DNS";
+            this.btnFlushDNS.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnFlushDNS.UseVisualStyleBackColor = true;
+            this.btnFlushDNS.Click += new System.EventHandler(this.btnFlushDNS_Click);
+            // 
+            // btnHosts
+            // 
+            this.btnHosts.Image = global::HostsEdit.Properties.Resources.hosts32;
+            this.btnHosts.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnHosts.Location = new System.Drawing.Point(283, 2);
+            this.btnHosts.Name = "btnHosts";
+            this.btnHosts.Size = new System.Drawing.Size(83, 36);
+            this.btnHosts.TabIndex = 3;
+            this.btnHosts.Text = "hosts";
+            this.btnHosts.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnHosts.UseVisualStyleBackColor = true;
+            this.btnHosts.Click += new System.EventHandler(this.btnHosts_Click);
+            // 
+            // brnRefresh
+            // 
+            this.brnRefresh.Image = global::HostsEdit.Properties.Resources.refresh24;
+            this.brnRefresh.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.brnRefresh.Location = new System.Drawing.Point(84, 2);
+            this.brnRefresh.Name = "brnRefresh";
+            this.brnRefresh.Size = new System.Drawing.Size(102, 36);
+            this.brnRefresh.TabIndex = 1;
+            this.brnRefresh.Text = " refresh";
+            this.brnRefresh.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.brnRefresh.UseVisualStyleBackColor = true;
+            this.brnRefresh.Click += new System.EventHandler(this.brnRefresh_Click);
             // 
             // label1
             // 
@@ -80,6 +136,19 @@
             this.txtSearch.Size = new System.Drawing.Size(133, 23);
             this.txtSearch.TabIndex = 0;
             this.txtSearch.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtSearch_KeyPress);
+            // 
+            // btnSave
+            // 
+            this.btnSave.Image = global::HostsEdit.Properties.Resources.save24;
+            this.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnSave.Location = new System.Drawing.Point(193, 2);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(83, 36);
+            this.btnSave.TabIndex = 2;
+            this.btnSave.Text = " save";
+            this.btnSave.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // dg
             // 
@@ -122,45 +191,6 @@
             this.toolStripDividePer9});
             this.ctxGrid.Name = "ctxGrid";
             this.ctxGrid.Size = new System.Drawing.Size(182, 114);
-            // 
-            // btnHosts
-            // 
-            this.btnHosts.Image = global::HostsEdit.Properties.Resources.hosts32;
-            this.btnHosts.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnHosts.Location = new System.Drawing.Point(193, 2);
-            this.btnHosts.Name = "btnHosts";
-            this.btnHosts.Size = new System.Drawing.Size(83, 36);
-            this.btnHosts.TabIndex = 3;
-            this.btnHosts.Text = "hosts";
-            this.btnHosts.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnHosts.UseVisualStyleBackColor = true;
-            this.btnHosts.Click += new System.EventHandler(this.btnHosts_Click);
-            // 
-            // brnRefresh
-            // 
-            this.brnRefresh.Image = global::HostsEdit.Properties.Resources.refresh24;
-            this.brnRefresh.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.brnRefresh.Location = new System.Drawing.Point(2, 2);
-            this.brnRefresh.Name = "brnRefresh";
-            this.brnRefresh.Size = new System.Drawing.Size(102, 36);
-            this.brnRefresh.TabIndex = 1;
-            this.brnRefresh.Text = " refresh";
-            this.brnRefresh.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.brnRefresh.UseVisualStyleBackColor = true;
-            this.brnRefresh.Click += new System.EventHandler(this.brnRefresh_Click);
-            // 
-            // btnSave
-            // 
-            this.btnSave.Image = global::HostsEdit.Properties.Resources.save24;
-            this.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSave.Location = new System.Drawing.Point(107, 2);
-            this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(83, 36);
-            this.btnSave.TabIndex = 2;
-            this.btnSave.Text = " save";
-            this.btnSave.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnSave.UseVisualStyleBackColor = true;
-            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // toolStripCopy
             // 
@@ -237,6 +267,8 @@
         private System.Windows.Forms.ToolStripMenuItem toolStripDivide;
         private System.Windows.Forms.Button btnHosts;
         private System.Windows.Forms.ToolStripMenuItem toolStripDividePer9;
+        private System.Windows.Forms.Button btnFlushDNS;
+        private System.Windows.Forms.Button btnAdd;
     }
 }
 

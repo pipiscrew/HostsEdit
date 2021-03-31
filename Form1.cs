@@ -59,7 +59,7 @@ namespace HostsEdit
 
                 dg.FirstDisplayedScrollingRowIndex = g[0].Index;
 
-                dg.Focus();
+               // dg.Focus();
             }
         }
 
@@ -284,6 +284,48 @@ namespace HostsEdit
                     }
                 }
             );
+        }
+
+        private void btnFlushDNS_Click(object sender, EventArgs e)
+        {
+           string filepath = string.Format("{0}\\ipconfig.exe",Environment.SystemDirectory);
+           if (File.Exists(filepath))
+               Process.Start("cmd.exe",  string.Format("/k {0} {1}", filepath, "/flushdns"));
+           else
+               MessageBox.Show(filepath + " not found");
+        }
+
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
+            string val = null;
+
+            AddHost g = new AddHost();
+           if ( g.ShowDialog(out val) == System.Windows.Forms.DialogResult.OK){
+
+               string t = " " + val;
+               int r = dg.Rows.OfType<DataGridViewRow>().Where(x => x.Cells[0].Value != null && x.Cells[0].Value.ToString().IndexOf(t, StringComparison.OrdinalIgnoreCase) > 0).Count();
+
+               if (r > 0)
+               {
+                   MessageBox.Show(val + " already exists!");
+                   return;
+               }
+
+               var cVal = dg.Rows[dg.Rows.Count - 2].Cells[0].Value;
+
+               if (cVal == null)
+                   return;
+
+               cVal = dg.Rows[dg.Rows.Count - 2].Cells[0].Value.ToString();
+
+               dg.Rows[dg.Rows.Count - 2].Cells[0].Value = cVal + t;
+
+               Signalize9entries();
+
+               dg.FirstDisplayedScrollingRowIndex = dg.Rows.Count - 2;
+           }
+
+
         }
     }
 
